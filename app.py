@@ -1,4 +1,3 @@
-import os
 from time import sleep
 from flask import Flask, request, render_template, jsonify
 from boxview import BoxViewClient
@@ -18,7 +17,7 @@ def index():
 def desktop_upload_document():
     """
     """
-    box_view_client = create_box_view_client()
+    box_view_client = BoxViewClient()
     uploaded_file = request.files['file']
 
     try:
@@ -36,7 +35,7 @@ def desktop_upload_document():
 def url_upload_document():
     """
     """
-    box_view_client = create_box_view_client()
+    box_view_client = BoxViewClient()
     document_url = request.form['document-url']
 
     try:
@@ -55,7 +54,7 @@ def create_session():
     """
     """
     sleep(2)
-    box_view_client = create_box_view_client()
+    box_view_client = BoxViewClient()
     document_id = request.form['document_id']
 
     should_expire = request.form['expire']
@@ -88,12 +87,6 @@ def webhook_success():
 
     print request.data
     return "OK"
-
-
-def create_box_view_client():
-    """
-    """
-    return BoxViewClient(os.environ['BOX_VIEW_API_KEY'])
 
 
 def create_session_for_document(document_id,
