@@ -9,3 +9,8 @@ body, html, .container {
 
 .start-hidden {
   display: none; }
+
+iframe {
+  width: 75%;
+  height: 40em;
+  margin: auto; }
