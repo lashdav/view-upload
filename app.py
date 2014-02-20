@@ -17,6 +17,7 @@ def index():
 def desktop_upload_document():
     """
     """
+    print str(request.form)
     box_view_client = BoxViewClient()
     uploaded_file = request.files['file']
 

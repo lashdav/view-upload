@@ -2,17 +2,22 @@
 
 /* Button Click Event */
 
-$('#choose-desktop-upload').click(function() {
+$('.upload').click(function() {
+    var $this = $(this);
     $('#session-link').hide();
-    $('#desktop-upload-form').show();
-    $('#url-upload-form').hide();
+    if (!$this.hasClass('active')) {
+        $('.upload').removeClass('active');
+        $(this).addClass('active');
+        $('form').toggle();
+    }
 });
 
-$('#choose-url-upload').click(function() {
-    $('#session-link').hide();
-    $('#url-upload-form').show();
-    $('#desktop-upload-form').hide();
-});
+/* Error Function */
+
+function showError() {
+    $('#progress').toggle();
+    $('#session-link').attr('href', '.').removeAttr('target').text('Something went wrong while converting...').show();
+}
 
 /* Form Submit Events */
 
@@ -30,7 +35,7 @@ function fetchSession(documentID, expire) {
         url: 'sessions',
         error: function (data) {
             console.log(data);
-            $('#session-link').text('Something went wrong while converting...').show();
+            showError();
         },
         statusCode: {
             200: function(data) {
@@ -48,7 +53,7 @@ $('#desktop-upload-form').submit(function () {
     $('button').blur();
 
     var data = new FormData();
-    data.append('file', $('#file_to_convert')[0].files[0]);
+    data.append('file', $('#file')[0].files[0]);
     var shouldExpire = $('#desktop-expiration').is(':checked') ? 'no_expire' : 'expire';
 
     $('button, #progress').toggle('fast');
@@ -61,7 +66,7 @@ $('#desktop-upload-form').submit(function () {
         url: 'desktop-upload',
         error: function (data) {
             console.log(data);
-            $('#session-link').text('Something went wrong while converting...').show();
+            showError();
             analytics.track('Desktop Conversion', {
                 success: 'false'
             });
@@ -93,7 +98,7 @@ $('#url-upload-form').submit(function () {
         url: 'url-upload',
         error: function (data) {
             console.log(data);
-            $('#session-link').text('Something went wrong while converting...').show();
+            showError();
             analytics.track('URL Conversion', {
                 success: 'false'
             });

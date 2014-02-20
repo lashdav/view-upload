@@ -1,1 +1,11 @@
-body,html,.container{height:100%}.vertically-centered{margin-top:15%}.horizontally-centered{text-align:center}.start-hidden{display:none}
+body, html, .container {
+  height: 100%; }
+
+.vertically-centered {
+  margin-top: 15%; }
+
+.horizontally-centered {
+  text-align: center; }
+
+.start-hidden {
+  display: none; }
