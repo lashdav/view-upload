@@ -1,4 +1,4 @@
-box-view-api-walkthrough
+Box View Link Generator
 ========================
 
-An intro to the Box View API
+A simple tool for generating HTML5 versions of PDF and Office documents using the [Box View API](http://developers.box.com/view/)
