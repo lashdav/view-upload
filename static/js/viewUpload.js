@@ -21,6 +21,7 @@ function showError() {
 /* Form Submit Events */
 
 function fetchSession(documentID, expire) {
+    console.log('Document ID is: ' + documentID);
     var data = new FormData();
     data.append('document_id', documentID);
     data.append('expire', expire);
