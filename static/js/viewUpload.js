@@ -21,7 +21,6 @@ function showError() {
 /* Form Submit Events */
 
 function fetchSession(documentID, expire) {
-    console.log('Document ID is: ' + documentID);
     var data = new FormData();
     data.append('document_id', documentID);
     data.append('expire', expire);
@@ -74,6 +73,7 @@ $('#desktop-upload-form').submit(function () {
             });
         }
     }).done(function (data) {
+        console.log('Document ID is: ' + data.id);
         fetchSession(data.id, shouldExpire);
         analytics.track('Desktop Conversion', {
             success: 'true'
@@ -106,6 +106,7 @@ $('#url-upload-form').submit(function () {
             });
         }
     }).done(function (data) {
+        console.log('Document ID is: ' + data.id);
         fetchSession(data.id, shouldExpire);
         analytics.track('URL Conversion', {
             success: 'true'
